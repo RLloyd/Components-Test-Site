@@ -1,6 +1,9 @@
-import { FC } from 'react';
+// src/components/TopNav.tsx
+import { FC, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styles from '../styles/TopNav.module.scss';
 import { Theme } from '../types/theme';
+import GDFusionLogo from '../assets/GD-Fusion-logo.png';
 
 interface TopNavProps {
   theme: Theme;
@@ -8,37 +11,78 @@ interface TopNavProps {
 }
 
 export const TopNav: FC<TopNavProps> = ({ theme, onThemeToggle }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const closeMenu = () => setIsMenuOpen(false);
+
+  const isActive = (path: string) => location.pathname === path;
+
   return (
     <nav className={`${styles.topNav} ${styles[theme]}`}>
-      <div className={styles.containerOne}>
+      <div className={styles.mobileMenuButton} onClick={toggleMenu}>
+        <span className={`${styles.hamburger} ${isMenuOpen ? styles.open : ''}`} />
+      </div>
+
+      <div className={`${styles.containerOne} ${isMenuOpen ? styles.open : ''}`}>
         <div className={styles.leftContainer}>
-          <a href="/mashmedia" className={styles.navLink}>
+          <Link
+            to="/mashmedia"
+            className={`${styles.navLink} ${isActive('/mashmedia') ? styles.active : ''}`}
+            onClick={closeMenu}
+          >
             MashMedia Studio
-          </a>
-          <a href="/digitalone" className={styles.navLink}>
+          </Link>
+          <Link
+            to="/digitalone"
+            className={`${styles.navLink} ${isActive('/digitalone') ? styles.active : ''}`}
+            onClick={closeMenu}
+          >
             DigitalOne
-          </a>
-          <a href="/zenmonics" className={styles.navLink}>
+          </Link>
+          <Link
+            to="/zenmonics"
+            className={`${styles.navLink} ${isActive('/zenmonics') ? styles.active : ''}`}
+            onClick={closeMenu}
+          >
             Zenmonics
-          </a>
+          </Link>
         </div>
 
         <div className={styles.middleContainer}>
-          <a href="/" className={styles.logo}>
-            LOGO
-          </a>
+          <Link to="/" className={styles.logo} onClick={closeMenu}>
+            <img
+              src={GDFusionLogo}
+              alt="GD Fusion Logo"
+              className={styles.logoImage}
+            />
+          </Link>
         </div>
 
         <div className={styles.rightContainer}>
-          <a href="/blog" className={styles.navLink}>
+          <Link
+            to="/blog"
+            className={`${styles.navLink} ${isActive('/blog') ? styles.active : ''}`}
+            onClick={closeMenu}
+          >
             Blog
-          </a>
-          <a href="/styleguide" className={styles.navLink}>
+          </Link>
+          <Link
+            to="/styleguide"
+            className={`${styles.navLink} ${isActive('/styleguide') ? styles.active : ''}`}
+            onClick={closeMenu}
+          >
             Styleguide
-          </a>
-          <a href="/profile" className={styles.navLink}>
+          </Link>
+          <Link
+            to="/profile"
+            className={`${styles.navLink} ${isActive('/profile') ? styles.active : ''}`}
+            onClick={closeMenu}
+          >
             Profile
-          </a>
+          </Link>
         </div>
       </div>
 

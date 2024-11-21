@@ -8,11 +8,31 @@
   box-sizing: border-box;
 }
 
+:root {
+  &[data-theme='light'] {
+    --bg-primary: #{$light};
+    --text-primary: #{$textDark};
+    --bg-secondary: #{lighten($light, 3%)};
+    --border-color: #{rgba($black, 0.1)};
+  }
+
+  &[data-theme='dark'] {
+    --bg-primary: #{$dark};
+    --text-primary: #{$textLight};
+    --bg-secondary: #{lighten($dark, 3%)};
+    --border-color: #{rgba($white, 0.1)};
+  }
+}
+
 body {
   font-family: $font-body;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color $transition-base ease,
+              color $transition-base ease;
 }
 
 h1, h2, h3, h4, h5, h6 {

@@ -6,7 +6,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 70px;
+  height: 70px; // Adjust if needed to accommodate logo height
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,39 +25,137 @@
     background-color: #1a1a1a;
     color: lighten($primary, 20%);
   }
+
+  @include respond-to($breakpoint-md) {
+    padding: 0 $space-xl;
+    height: 80px; // Slightly taller on desktop if needed
+  }
+}
+
+// Mobile menu button
+.mobileMenuButton {
+  display: block;
+  z-index: $z-header + 1;
+  cursor: pointer;
+  padding: $space-sm;
+
+  @include respond-to($breakpoint-lg) {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: currentColor;
+    position: relative;
+    transition: background-color $transition-base ease;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 24px;
+      height: 2px;
+      background-color: currentColor;
+      transition: transform $transition-base ease;
+    }
+
+    &::before {
+      top: -8px;
+    }
+
+    &::after {
+      bottom: -8px;
+    }
+
+    &.open {
+      background-color: transparent;
+
+      &::before {
+        transform: translateY(8px) rotate(45deg);
+      }
+
+      &::after {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+    }
+  }
 }
 
 .containerOne {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 1;
   gap: $space-xl;
-}
 
-.containerTwo {
-  margin-right: $space-xl;
+  @media (max-width: #{$breakpoint-lg - 1px}) {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: column;
+    background-color: var(--bg-primary);
+    padding: $space-xl;
+    transform: translateX(-100%);
+    transition: transform $transition-base ease;
+    opacity: 0;
+    visibility: hidden;
+
+    .middleContainer {
+      order: -1; // Move logo to top in mobile menu
+      margin-bottom: $space-xl;
+    }
+
+    &.open {
+      transform: translateX(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .leftContainer,
+    .rightContainer {
+      flex-direction: column;
+      align-items: center;
+      gap: $space-xl;
+    }
+  }
 }
 
 .leftContainer,
 .rightContainer {
   display: flex;
   gap: $space-lg;
+
+  @include respond-to($breakpoint-lg) {
+    gap: $space-xl;
+  }
 }
 
 .middleContainer {
-  .logo {
-    font-family: $font-header;
-    font-size: $font-xl;
-    color: $primary;
-    text-decoration: none;
-    transition: color $transition-base ease;
+   .logo {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     text-decoration: none;
+     transition: opacity $transition-base ease;
 
-    &:hover {
-      color: $secondary;
-    }
-  }
-}
+     &:hover {
+       opacity: 0.9;
+     }
+   }
+
+   .logoImage {
+     height: 40px; // Adjust this value based on your logo's proportions
+     width: auto;
+     object-fit: contain;
+
+     @include respond-to($breakpoint-md) {
+       height: 50px; // Slightly larger on desktop
+     }
+   }
+ }
 
 .navLink {
   color: inherit;
@@ -66,7 +164,8 @@
   transition: all $transition-base ease;
   position: relative;
 
-  &:hover {
+  &:hover,
+  &.active {
     color: $accent;
   }
 
@@ -81,8 +180,17 @@
     transition: width $transition-base ease;
   }
 
-  &:hover::after {
+  &:hover::after,
+  &.active::after {
     width: 100%;
+  }
+}
+
+.containerTwo {
+  margin-right: $space-sm;
+
+  @include respond-to($breakpoint-md) {
+    margin-right: $space-xl;
   }
 }
 

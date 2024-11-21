@@ -1,0 +1,153 @@
+// src/styles/pages/Pages.module.scss
+@import '../variables';
+
+.pageContainer {
+  padding: $space-lg;
+  max-width: $breakpoint-lg;
+  margin: 0 auto;
+
+  @include respond-to($breakpoint-md) {
+    padding: $space-2xl;
+  }
+
+  h1 {
+    color: $primary;
+    margin-bottom: $space-lg;
+    font-family: $font-header;
+    font-size: $font-2xl;
+
+    @include respond-to($breakpoint-md) {
+      font-size: $font-3xl;
+      margin-bottom: $space-xl;
+    }
+  }
+
+  h2 {
+    color: $accent;
+    margin: $space-md 0;
+    font-family: $font-header;
+    font-size: $font-xl;
+
+    @include respond-to($breakpoint-md) {
+      font-size: $font-2xl;
+      margin: $space-lg 0;
+    }
+  }
+
+  h3 {
+    color: $secondary;
+    margin: $space-sm 0;
+    font-family: $font-header;
+    font-size: $font-lg;
+
+    @include respond-to($breakpoint-md) {
+      font-size: $font-xl;
+      margin: $space-md 0;
+    }
+  }
+
+  p {
+    margin-bottom: $space-md;
+    line-height: 1.6;
+    font-size: $font-sm;
+
+    @include respond-to($breakpoint-md) {
+      margin-bottom: $space-lg;
+      font-size: $font-base;
+    }
+  }
+}
+
+.content {
+  margin-top: $space-xl;
+
+  @include respond-to($breakpoint-md) {
+    margin-top: $space-2xl;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      margin: $space-sm 0;
+      padding-left: $space-lg;
+      position: relative;
+      font-size: $font-sm;
+
+      @include respond-to($breakpoint-md) {
+        margin: $space-md 0;
+        font-size: $font-base;
+      }
+
+      &::before {
+        content: "•";
+        color: $secondary;
+        position: absolute;
+        left: 0;
+      }
+    }
+  }
+}
+
+.blogPost {
+  .postPreview {
+    margin: $space-md 0;
+    padding: $space-md;
+    border-radius: $radius-md;
+    background-color: rgba($primary, 0.05);
+    transition: transform $transition-base ease;
+
+    @include respond-to($breakpoint-md) {
+      margin: $space-lg 0;
+      padding: $space-lg;
+      border-radius: $radius-lg;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.colorPalette {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: $space-sm;
+
+  @include respond-to($breakpoint-md) {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: $space-md;
+  }
+
+  .colorSwatch {
+    aspect-ratio: 1;
+    border-radius: $radius-md;
+    color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: $font-sm;
+
+    @include respond-to($breakpoint-md) {
+      border-radius: $radius-lg;
+      font-size: $font-base;
+    }
+  }
+}
+
+.profileInfo {
+  .infoSection {
+    padding: $space-md;
+    background-color: rgba($secondary, 0.05);
+    border-radius: $radius-md;
+    margin: $space-md 0;
+
+    @include respond-to($breakpoint-md) {
+      padding: $space-lg;
+      border-radius: $radius-lg;
+      margin: $space-lg 0;
+    }
+  }
+}

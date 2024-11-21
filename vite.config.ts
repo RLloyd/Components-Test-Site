@@ -15,6 +15,7 @@ export default defineConfig({
         additionalData: `@import "./src/styles/variables";`
       }
     }
-  }
+  },
+  assetsInclude: ['**/*.png'] // Ensure PNG files are handled correctly
 })
 
