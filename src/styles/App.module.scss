@@ -1,0 +1,58 @@
+// src/styles/App.module.scss
+@import 'variables';
+
+.appContainer {
+  min-height: 100vh;
+  padding-top: 70px;
+  transition: background-color $transition-base ease,
+              color $transition-base ease;
+  font-family: $font-body;
+//   border: 1px solid red;
+
+  &.light {
+    background-color: #ffffff;
+    color: #333333;
+  }
+
+  &.dark {
+    background-color: #1a1a1a;
+    color: #ffffff;
+  }
+}
+
+.content {
+  padding: $space-xl;
+  max-width: $breakpoint-lg;
+  margin: 0 auto;
+  text-align: center;
+//   border: 1px solid red;
+
+  @include respond-to($breakpoint-md) {
+    padding: $space-2xl;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $font-header;
+    margin-bottom: $space-md;
+  }
+
+  p {
+    font-family: $font-body;
+    margin-bottom: $space-md;
+  }
+}
+
+.heading {
+  font-family: $font-header;
+  font-size: $font-2xl;
+  color: $primary;
+  margin-bottom: $space-lg;
+  font-weight: 700;
+}
+
+.paragraph {
+  font-family: $font-body;
+  font-size: $font-base;
+  line-height: 1.6;
+  margin-bottom: $space-md;
+}

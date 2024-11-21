@@ -1,0 +1,101 @@
+// src/styles/TopNav.module.scss
+@import 'variables';
+
+.topNav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 $space-md;
+  font-family: $font-body;
+  box-shadow: $shadow-base;
+  z-index: $z-header;
+  transition: all $transition-base ease;
+
+  &.light {
+    background-color: #ffffff;
+    color: $textDark;
+  }
+
+  &.dark {
+    background-color: #1a1a1a;
+    color: lighten($primary, 20%);
+  }
+}
+
+.containerOne {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: $space-xl;
+}
+
+.containerTwo {
+  margin-right: $space-xl;
+}
+
+.leftContainer,
+.rightContainer {
+  display: flex;
+  gap: $space-lg;
+}
+
+.middleContainer {
+  .logo {
+    font-family: $font-header;
+    font-size: $font-xl;
+    color: $primary;
+    text-decoration: none;
+    transition: color $transition-base ease;
+
+    &:hover {
+      color: $secondary;
+    }
+  }
+}
+
+.navLink {
+  color: inherit;
+  text-decoration: none;
+  font-size: $font-base;
+  transition: all $transition-base ease;
+  position: relative;
+
+  &:hover {
+    color: $accent;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -$space-xs;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: $secondary;
+    transition: width $transition-base ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+.themeToggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: $space-sm;
+  color: inherit;
+  transition: all $transition-base ease;
+  border-radius: $radius-full;
+
+  &:hover {
+    background-color: rgba($secondary, 0.1);
+  }
+}
